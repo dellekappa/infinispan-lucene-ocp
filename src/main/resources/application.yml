@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/ilo
+    username: ilo
+    password: ilo
+    type: com.zaxxer.hikari.HikariDataSource

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/resources/dojo.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dijit/themes/claro/claro.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: false"></script>
+
+    <script>
+        // Require the registry, parser, Dialog, and wait for domReady
+        require(["dojo/parser", "dojo/ready", "dijit/registry", "dojo/request/xhr", "dijit/form/Button", "dojo/domReady!"]
+            , function(parser, ready, registry, xhr) {
+                // Explicitly parse the page
+                parser.parse();
+
+                ready(function() {
+                    var but = registry.byId("loadButton")
+
+                    but.on("click", function(){
+                        alert('button pressed');
+                        xhr.post("/api/indexer/person").then(
+                            function() {
+                                alert('Index built')
+                            }
+                        );
+                    });
+                });
+            });
+    </script>
+</head>
+<body class="claro">
+    <span  data-dojo-type="dojo/store/JsonRest" data-dojo-props="target: '/api/person'" data-dojo-id="personApi"/>
+    <div data-dojo-type="dijit/layout/ContentPane">
+        <button data-dojo-type="dijit/form/Button" data-dojo-props="id: 'loadButton'">
+            Crea indici iniziali
+        </button>
+    </div>
+    <div data-dojo-type="dijit/layout/ContentPane">
+        <span data-dojo-type="dijit/form/FilteringSelect" data-dojo-props="searchAttr:'q', labelAttr:'description', autoComplete: false, highlightMatch: 'all', queryExpr: '${0}', store:personApi"/>
+    </div>
+    <div data-dojo-type="dijit/layout/ContentPane">
+
+    </div>
+</body>
+</html>
