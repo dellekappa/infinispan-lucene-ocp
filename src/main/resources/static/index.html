@@ -19,7 +19,6 @@
                     var but = registry.byId("loadButton")
 
                     but.on("click", function(){
-                        alert('button pressed');
                         xhr.post("/api/indexer/person").then(
                             function() {
                                 alert('Index built')
