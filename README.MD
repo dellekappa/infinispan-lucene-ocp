@@ -16,3 +16,15 @@ and launch the jar produced
 `java -jar target/infinispan-lucene-ocp-1.0.0-SNAPSHOT.jar`
 
 The application will try to connect the database configured in src/main/resources/application.yml
+
+When the application is up and runnning you can go to http://localhost:8080 and a very simple html page will appear.
+The first time you will use this app you must build the lucene indexes. After that you write in the combo to simulate the lucene search
+
+you can try hitting 
+
+ROSSI
+MARIO
+VERDI
+BIANCHI
+
+and so on
